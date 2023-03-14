@@ -28,14 +28,16 @@ def read_phonebook():
     file.close()
     return mat_line
 
-def delete():
+def delete(st):
     lines = read_phonebook()
     file = open("file.txt", "w", encoding='utf-8')
     for line in lines:
+        if st in line:
+            file.write(line)
+    file.close()
 
-    pass
 
-def edit():
+def edit(st):
     file = open("file.txt", "a", encoding='utf-8')
     
     file.close()
