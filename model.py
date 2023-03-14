@@ -9,13 +9,15 @@ def add_contact():
     file.close()
 
 def find():
-    f = input("Введите элемент поиска")
+    f = input("Введите элемент поиска ")
     lines = read_phonebook()
+    cnt = 0
     for line in lines:
         if f in line:
+            cnt += 1
             return line
-        else:
-            return "Контакт не найден "
+    if cnt == 0:
+        return "Контакт не найден "
 
 def read_phonebook():
     file = open("file.txt", "r", encoding='utf-8')
@@ -25,3 +27,16 @@ def read_phonebook():
         mat_line.append(line)
     file.close()
     return mat_line
+
+def delete():
+    lines = read_phonebook()
+    file = open("file.txt", "w", encoding='utf-8')
+    for line in lines:
+
+    pass
+
+def edit():
+    file = open("file.txt", "a", encoding='utf-8')
+    
+    file.close()
+    pass
