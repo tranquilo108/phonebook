@@ -10,7 +10,7 @@ def add_contact():
 
 def find():
     # file = open("file.txt", "r")
-    # f = input("")
+    f = input("")
     # lines = file.readlines()
     
     lines = read_phonebook()
