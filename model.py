@@ -12,6 +12,7 @@ def find():
     # file = open("file.txt", "r")
     # f = input("")
     # lines = file.readlines()
+    
     lines = read_phonebook()
     for line in lines:
         if f in line:
