@@ -32,13 +32,16 @@ def delete(st):
     lines = read_phonebook()
     file = open("file.txt", "w", encoding='utf-8')
     for line in lines:
-        if st in line:
+        if st not in line:
             file.write(line)
     file.close()
 
 
 def edit(st):
-    file = open("file.txt", "a", encoding='utf-8')
-    
+    lines = read_phonebook()
+    file = open("file.txt", "w", encoding='utf-8')
+    for line in lines:
+        if st in line:
+            line = line.replace(st, add_contact())
+        file.write(line)
     file.close()
-    pass
