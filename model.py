@@ -24,7 +24,7 @@ def find():
 
 
 def reed_phonebook():
-    file = open('file.txt', 'r', encoding='utf-8')
+    file = open('file.txt', 'w+', encoding='utf-8')
     lines = file.readlines()
     lst = []
     for line in lines:
@@ -64,4 +64,3 @@ def get_int_input(st=''):
             return value
         except ValueError:
             print('Invalid input. Please enter an integer.')
-            

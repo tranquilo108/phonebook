@@ -12,6 +12,7 @@ def run():
         view.menu()
         choice = processing.get_int_input()
         if choice == 1:
+            print('\nEnter the search text')
             a = processing.find()
             if a == 'error find contact':
                 print(a)
