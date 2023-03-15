@@ -13,7 +13,7 @@ def add_contact():
 
 def find():
     f = input().upper()
-    lines = reed_phonebook()
+    lines = read_phonebook()
     cnt = 0
     for line in lines:
         if f in line.upper():
@@ -23,8 +23,8 @@ def find():
         return 'error find contact'
 
 
-def reed_phonebook():
-    file = open('file.txt', 'w+', encoding='utf-8')
+def read_phonebook():
+    file = open('file.txt', 'r', encoding='utf-8')
     lines = file.readlines()
     lst = []
     for line in lines:
@@ -33,7 +33,7 @@ def reed_phonebook():
     return lst
 
 def delete(st):
-    lines = reed_phonebook()
+    lines = read_phonebook()
     file = open('file.txt', 'w', encoding='utf-8')
     for line in lines:
         if st not in line:
@@ -41,7 +41,7 @@ def delete(st):
     file.close()
 
 def edit(st):
-    lines = reed_phonebook()
+    lines = read_phonebook()
     file = open('file.txt', 'w', encoding='utf-8')
     for i in range(len(lines)):
         if st in lines[i]:
