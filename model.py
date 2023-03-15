@@ -5,7 +5,7 @@ def add_contact():
     last_name = input('Input last name: ')
     phone = input('Input phone: ')
     contact = first_name + ' ' + last_name + ' ' + phone + '\n'
-    file = open('file.txt', 'a')
+    file = open('file.txt', 'a', encoding='utf-8')
     file.write(contact)
     file.close()
     return contact
@@ -24,7 +24,7 @@ def find():
 
 
 def reed_phonebook():
-    file = open('file.txt', 'r')
+    file = open('file.txt', 'r', encoding='utf-8')
     lines = file.readlines()
     lst = []
     for line in lines:
@@ -34,7 +34,7 @@ def reed_phonebook():
 
 def delete(st):
     lines = reed_phonebook()
-    file = open('file.txt', 'w')
+    file = open('file.txt', 'w', encoding='utf-8')
     for line in lines:
         if st not in line:
             file.write(line)
@@ -42,7 +42,7 @@ def delete(st):
 
 def edit(st):
     lines = reed_phonebook()
-    file = open('file.txt', 'w')
+    file = open('file.txt', 'w', encoding='utf-8')
     for i in range(len(lines)):
         if st in lines[i]:
             lines[i] = lines[i].replace(st, add_contact())
