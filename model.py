@@ -1,47 +1,66 @@
+import os
+
 def add_contact():
-    first_name = input('Введите имя: ')
-    last_name = input('Введите фамилию:')
-    phone = input("Введите телефон:")
-    file = open("file.txt", "a", encoding='utf-8')
-    file.write(first_name + ' ')
-    file.write(last_name + ' ')
-    file.write(phone + '\n')
+    first_name = input('Input first name: ')
+    last_name = input('Input last name: ')
+    phone = input('Input phone: ')
+    contact = first_name + ' ' + last_name + ' ' + phone + '\n'
+    file = open('file.txt', 'a')
+    file.write(contact)
     file.close()
+    return contact
+    
 
 def find():
-    f = input("Введите элемент поиска ")
-    lines = read_phonebook()
+    f = input().upper()
+    lines = reed_phonebook()
     cnt = 0
     for line in lines:
-        if f in line:
+        if f in line.upper():
             cnt += 1
             return line
     if cnt == 0:
-        return "Контакт не найден "
+        return 'error find contact'
 
-def read_phonebook():
-    file = open("file.txt", "r", encoding='utf-8')
+
+def reed_phonebook():
+    file = open('file.txt', 'r')
     lines = file.readlines()
-    mat_line = []
+    lst = []
     for line in lines:
-        mat_line.append(line)
+        lst.append(line)
     file.close()
-    return mat_line
+    return lst
 
 def delete(st):
-    lines = read_phonebook()
-    file = open("file.txt", "w", encoding='utf-8')
+    lines = reed_phonebook()
+    file = open('file.txt', 'w')
     for line in lines:
         if st not in line:
             file.write(line)
     file.close()
 
-
 def edit(st):
-    lines = read_phonebook()
-    file = open("file.txt", "w", encoding='utf-8')
-    for line in lines:
-        if st in line:
-            line = line.replace(st, add_contact())
-        file.write(line)
+    lines = reed_phonebook()
+    file = open('file.txt', 'w')
+    for i in range(len(lines)):
+        if st in lines[i]:
+            lines[i] = lines[i].replace(st, add_contact())
+            file.write(lines[i])
+        else:
+            file.write(lines[i])
     file.close()
+
+def press_any_key():
+    if os.name == 'nt':
+        os.system('pause')
+    else:
+        os.system('read -s -n 1 -p "Press any key to  continue ..."')
+
+def get_int_input(st=''):
+    while True:
+        try:
+            value = int(input(st))
+            return value
+        except ValueError:
+            print('Invalid input. Please enter an integer.')
