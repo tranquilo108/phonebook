@@ -1,10 +1,10 @@
 import view
 import model
-import os
+
 def run():
     view.greeting()
     while True:
-        os.system('cls' if os.name == 'nt' else 'clear')
+        model.press_any_key()
         view.menu()
         choice = int(input())
         match choice:
