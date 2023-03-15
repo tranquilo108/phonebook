@@ -7,6 +7,7 @@ import os
 def run():
     view.greeting()
     while True:
+
         os.system('cls' if os.name == 'nt' else 'clear')
         view.menu()
         choice = processing.get_int_input()
@@ -49,3 +50,4 @@ def run():
             processing.press_any_key()
                 
     
+
