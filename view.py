@@ -18,4 +18,3 @@ def show_phonebook():
 
 def find_menu():
     print('********************************\n           Choice\n********************************\n\n 1. Edit contact\n 2. Delete contact\n 3. Return menu\n')
-
