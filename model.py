@@ -1,29 +1,88 @@
+import os
+import view
+
 def add_contact():
-    first_name = input('Введите имя: ')
-    last_name = input('Введите фамилию:')
-    phone = input("Введите телефон:")
-    file = open("file.txt", "a")
-    file.write(first_name + ' ')
-    file.write(last_name + ' ')
-    file.write(phone + '\n')
+    os.system('cls' if os.name == 'nt' else 'clear')
+    view.title('Add contact')
+    first_name = input('Input first name: ')
+    last_name = input('Input last name: ')
+    phone = input('Input phone: ')
+    contact = first_name + ' ' + last_name + ' ' + phone + '\n'
+    file = open('file.txt', 'a')
+    file.write(contact)
     file.close()
+    return contact
+    
 
 def find():
-    # file = open("file.txt", "r")
-    # f = input("")
-    # lines = file.readlines()
-    lines = read_phonebook()
+    view.title('Find contact','not')
+    f = input('\nFind: ').upper()
+    lines = reed_phonebook()
+    cnt = 0
+    lst = []
     for line in lines:
-        if f in line:
-            print(line)
-        else:
-            print("Контакт ненайден")
+        if f in line.upper():
+            cnt += 1
+            lst.append(line)
+    if cnt == 0:
+        lst.append('error find contact')
+    return lst
 
-def read_phonebook():
-    file = open("file.txt", "r")
+def reed_phonebook():
+    file = open('file.txt', 'r')
     lines = file.readlines()
-    mat_line = []
+    lst = []
     for line in lines:
-        mat_line.append(line)
+        lst.append(line)
     file.close()
-    return mat_line
+    return lst
+
+def delete(st):
+    lines = reed_phonebook()
+    file = open('file.txt', 'w')
+    for line in lines:
+        if st not in line:
+            file.write(line)
+    file.close()
+
+def edit(st):
+    lines = reed_phonebook()
+    file = open('file.txt', 'w')
+    for i in range(len(lines)):
+        if st in lines[i]:
+            lines[i] = lines[i].replace(st, add_contact())
+            file.write(lines[i])
+        else:
+            file.write(lines[i])
+    file.close()
+
+def press_any_key():
+    if os.name == 'nt':
+        os.system('pause')
+    else:
+        os.system('read -s -n 1 -p "Press any key to  continue ..."')
+
+def get_int_input(st=''):
+    while True:
+        try:
+            value = int(input(st))
+            return value
+        except ValueError:
+            print('Invalid input. Please enter an integer.')
+
+def memu_2(line):
+    while True:
+        os.system('cls' if os.name == 'nt' else 'clear')
+        view.find_menu(line.replace('\n', ''))
+        find_choice = get_int_input()
+        if find_choice == 1:
+            edit(line)
+            break
+        elif find_choice == 2:
+            delete(line)
+            break
+        elif find_choice == 0:
+            break
+        else:
+            print('Input error')
+            press_any_key()
