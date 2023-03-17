@@ -3,6 +3,7 @@ import view
 import os
 
 def run():
+    os.system('cls' if os.name == 'nt' else 'clear')
     view.greeting()
     processing.press_any_key()
     while True:
